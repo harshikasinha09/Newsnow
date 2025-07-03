@@ -1,0 +1,180 @@
+<!--current weather-->
+<app-weather-news></app-weather-news>
+
+<!-- Top Stories Section -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <h2 class="mb-4">Top Stories</h2>
+      <div class="row g-4" *ngIf="newsList && newsList.length > 0">
+        <div class="col-12 col-sm-6 d-flex" *ngFor="let news of newsList">
+          <div class="card shadow w-100 d-flex flex-column">
+            <img [src]="news.urlToImage || 'https://via.placeholder.com/300x200/cccccc/ffffff?text=Image+Unavailable'" class="card-img-top p-3" alt="News Image" style="height: 200px; object-fit: cover;" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-truncate" title="{{ news.title }}">{{ news.title }}</h5>
+              <p class="card-text flex-grow-1">{{ news.description?.length > 200 ? (news.description | slice:0:150) + '...' : news.description }}</p>
+              <div class="mt-3">
+                <a [href]="news.url" target="_blank" class="btn btn-primary mt-auto">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--local news-->
+    <div class="col-12 col-md-4">
+      <h4 class="mb-4">Local News</h4>
+      <div class="list-group">
+        <div class="list-group-item mb-2" *ngFor="let local of localNews">
+          <a [href]="local.url" class="mb-1" id="link1" target="_blank">{{ local.title }}</a>
+          <br>
+          <small class="text-muted">{{ local.publishedAt | date:'short'}}</small>
+        </div>
+      </div>
+
+
+  <!--weather news-->
+  <div class="col-12 mt-4" *ngIf="weatherNews && weatherNews.length > 0">
+  <h4 class="mb-3">Weather News</h4>
+  <div class="list-group">
+    <div class="list-group-item mb-2" *ngFor="let article of weatherNews">
+      <a [href]="article.url" target="_blank" class="mb-1 text-decoration-none text-dark">
+       {{ article.title }}
+      </a>
+      <br>
+      <small class="text-muted">{{ article.publishedAt | date:'short' }}</small>
+    </div>
+  </div>
+</div>
+</div>
+  </div>
+</div>
+
+<br>
+  <!--Editors pick-->
+<div class="container mt-5 ml-1 mr-1 p-5 pb-0 rounded" id="editor-pick">
+  <h3 class="mb-4 pb-2 text-center" id="editor-head">Editor's Picks</h3>
+  <div class="row" *ngIf="editorsPicks && editorsPicks.length > 0">
+    <div class="col-12 col-sm-6 col-md-3 mb-4 d-flex" *ngFor="let pick of editorsPicks">
+      <a [href]="pick.url" target="_blank" class="text-decoration-none text-dark w-100">
+        <div class="card border-0 h-100 d-flex flex-column rounded-0" id="editorcard">
+          <img [src]="pick.urlToImage || 'https://via.placeholder.com/300x200?text=No+Image'" class="card-img-top-ed img-fluid"  alt="Editor's pick image"  style="object-fit:cover; height:200px;">
+          <div class="card-body d-flex flex-column px-0">
+            <h6 class="card-title fw-bold pt-0 p-3 ">{{ pick.title }}</h6>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<br>
+
+<!-- <div class="container mt-5">
+  <h3 class="mb-4 border-bottom pb-2">Featured</h3>
+  <div class="row">
+    <div class="col-12 mb-4" *ngIf="featuredNews">
+      <a [href]="featuredNews.url" target="_blank" class="text-decoration-none text-dark">
+        <div class="card border-0">
+          <img [src]="featuredNews.urlToImage || 'https://via.placeholder.com/600x300?text=Featured'" class="img-fluid w-100" alt="Featured image" style="height:300px; object-fit:cover;">
+          <div class="card-body">
+            <h4 class="card-title fw-bold">{{ featuredNews.title }}</h4>
+            <p class="card-text">{{ featuredNews.description }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+
+<!--Stories by Category-->
+<div class="container mt-5">
+  <h3 class="mb-4 border-bottom pb-2 text-center">Top Stories by Category</h3>
+  <div class="row g-4 mt-3">
+    <div class="col-12 col-md-6 col-lg-4 d-flex flex-column " *ngFor="let card of categoryCards">
+      <!-- Category Heading -->
+      <div class="mb-2 ">
+        <h6 class="text-uppercase text-primary fw-bold">
+          {{ card.category }}
+        </h6>
+      </div>
+
+      <div class="card h-100 shadow">
+        <img [src]="card.image" class="card-img-top" alt="News Image"style="height: 200px; object-fit: cover;" />
+        <div class="card-body d-flex flex-column">
+          <p class="card-text fw-semibold text-truncate" title="{{ card.title }}">
+            {{ card.title }}
+          </p>
+
+          <p class="card-text flex-grow-1">
+            {{ card.description?.length > 150 ? (card.description | slice: 0: 150) + '...' : card.description }}
+          </p>
+
+          <a [href]="card.url" target="_blank" class="btn btn-outline-primary mt-auto">
+            Read More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+
+  <!-- featured-->
+  <div class="container mt-5">
+  <h3 class="mb-4 text-center fw-bold featured">Featured</h3>
+  <div class="row p-3 rounded" id="featured">
+    <div class="col-12 col-md-6">
+      <img [src]="photoStory.urlToImage || 'https://via.placeholder.com/600x400?text=Photo+Story'" class="img-fluid w-100 mb-3 mb-md-0" style="object-fit:cover; height:100%;">
+    </div>
+    <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
+      <h4 class="fw-bold border-bottom pb-2">{{ photoStory.title }}</h4>
+      <p>{{ photoStory.description }}</p>
+    </div>
+  </div>
+</div>
+<br>
+
+<!--footer-->
+<footer class="bg-dark text-white pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+      
+      <!-- About -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-3">About</h5>
+        <p class="small ">
+          A live news portal that helps you stay updated on Technology, Business, Health, and more all in one place.
+        </p>
+      </div>
+
+      <!-- Sections -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-3">Sections</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white text-decoration-none d-block py-1">Home</a></li>
+          <li><a class="text-white text-decoration-none d-block py-1"[routerLink]="['/category', 'business']">Business</a></li>
+          <li><a class="text-white text-decoration-none d-block py-1"[routerLink]="['/category', 'entertainment']">Entertainment</a></li>
+          <li><a href="#" class="text-white text-decoration-none d-block py-1"[routerLink]="['/category', 'health']">Health</a></li>
+          <li><a href="#" class="text-white text-decoration-none d-block py-1"[routerLink]="['/category', 'sports']">Sports</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-uppercase mb-3">Contact</h5>
+        <p class="small mb-1"><i class="bi bi-envelope"></i> support&#64;newsnow.com</p>
+        <p class="small mb-1"><i class="bi bi-telephone me-2"></i> +91 99999 99999</p>
+        <p class="small"><i class="bi bi-geo-alt me-2"></i> Raipur, India</p>
+      </div>
+
+    </div>
+    <hr class="border-light" />
+    <div class="text-center">
+      <p class="small  mb-0">&copy;2025 NewsNow. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>

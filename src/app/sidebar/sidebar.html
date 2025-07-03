@@ -1,0 +1,34 @@
+<nav class="navbar navbar-dark bg-dark px-3">
+  <a class="navbar-brand fw-bold text-white" routerLink="/" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">NewsNow</a>
+
+  <div class="ms-auto">
+  <button class="btn btn-outline-light" (click)="toggleSidebar()"> &#9776;</button>
+</div>
+</nav>
+
+<!-- Right Sidebar -->
+<div class="sidebar bg-dark text-white" [class.open]="sidebarOpen">
+  <ul class="nav flex-column p-3">
+    <li class="nav-item">
+      <a class="nav-link text-white" href="#" (click)="closeSidebar()">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" [routerLink]="['/category', 'technology']" (click)="closeSidebar()">Technology</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" [routerLink]="['/category', 'business']" (click)="closeSidebar()">Business</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" [routerLink]="['/category', 'health']" (click)="closeSidebar()">Health</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" [routerLink]="['/category', 'entertainment']" (click)="closeSidebar()">Entertainment</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link text-white" [routerLink]="['/category', 'sports']" (click)="closeSidebar()">sports</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" [routerLink]="['/category', 'politics']" (click)="closeSidebar()">Politics</a>
+    </li>
+  </ul>
+</div>

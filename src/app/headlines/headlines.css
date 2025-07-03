@@ -1,0 +1,41 @@
+#link1{
+    text-decoration: none;
+    color: black;
+}
+#link1:hover{
+    text-decoration: underline;
+}
+
+.card-img-top-ed {
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer i {
+  font-size: 1.2rem;
+}
+
+#editor-pick{
+  background-color: rgb(246, 237, 225);
+
+}
+
+#editor-head{
+  
+  border-bottom: 1px solid #4d1d06; /* Change color as needed */
+  display: inline-block;
+}
+
+#featured{
+  background-color: rgb(246, 237, 225);
+}
+
+.featured{
+  text-decoration: underline;
+}
+

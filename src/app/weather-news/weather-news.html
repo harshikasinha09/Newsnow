@@ -1,0 +1,13 @@
+<div class="container mt-4" *ngIf="weather">
+  <div class="alert alert-success d-flex align-items-center justify-content-between">
+    <div>
+      <h5 class="mb-1">🌤️ Weather in {{ weather.name }}</h5>
+      <p class="mb-0">
+        Temp: {{ weather.main.temp }}°C | 
+        Humidity: {{ weather.main.humidity }}% |
+        Wind: {{ weather.wind.speed }} m/s
+      </p>
+    </div>
+    <img [src]="'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" alt="Weather icon"/>
+  </div>
+</div>
